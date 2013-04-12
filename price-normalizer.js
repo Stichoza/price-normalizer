@@ -1,7 +1,11 @@
 var __prcm_rex__ = new RegExp("([$€₠₡₢₣₤₥₦₧₨₩₪₫₭₮₯₰₱₲₳₴₵₶₷₸₹₺])+([0-9, ]{1,10})+([.]{0,1})+([0-9]{1,5})", "igm");
-//var __prcm_rpl__ = "<span title=\"Original price was $&\">$&</span>";
 var __prcm_rpl__ = function (s) {
-    return "<span class=\"__prcm__\" title=\"Original price was "+s+"\">"+s+"</span>"
+    var r = s.replace(/([0-9, ]{1,10})+([.]{0,1})+([0-9]{1,5})/, __prcm_ceil__);
+    return "<span class=\"__prcm__\" title=\"Original price was "+s+"\">"+r+"</span>"
+}
+var __prcm_ceil__ = function (s) {
+    s = s.replace(/([, ])/gi, "");
+    return Math.round(parseFloat(s, 10));
 }
 var __prcm_elem__ = document.getElementsByTagName("body")[0];
 var __prcm_match__ = __prcm_elem__.innerHTML.match(__prcm_rex__);
