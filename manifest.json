@@ -14,7 +14,7 @@
 	],
 	"content_scripts": [{
 		"matches": ["*://*/*"],
-		"js": ["jquery.min.js", "main.js"],
+		"js": ["price-normalizer.js"],
 		"run_at": "document_end"
 	}]
 
