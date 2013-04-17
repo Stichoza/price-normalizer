@@ -5,7 +5,8 @@ var __prcm_rpl__ = function (s) {
 var __prcm_ceil__ = function (s) {
     s = parseFloat(s.replace(/([, ])/gi, ""), 10);
     var r = Math.round(s);
-    return (r<s) ? s : "<span class=\"__prcm__\" title=\"Original price was "+s+"\">"+r+"</span>";
+    //return (r<s) ? s : "<span class=\"__prcm__\" title=\"Original price was "+s+"\">"+r+"</span>";
+    return (r<s) ? s : r;
 }
 var __prcm_elem__ = document.getElementsByTagName("body")[0];
 var __prcm_match__ = __prcm_elem__.innerHTML.match(__prcm_rex__);
