@@ -10,7 +10,7 @@
 	},
 	"browser_action": {
 		"default_icon": "assets/icons/icon-48.png",
-		"default_popup": "popup.html",
+		//"default_popup": "popup.html",
 		"default_name": "Price Normalizer"
 	},
 	"background": {
