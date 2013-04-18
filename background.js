@@ -1,6 +1,6 @@
 // Initialize localStorage
-setEnabled(localStorage["enabled"] == 'undefined' || !getEnabled());
-setActive(!(localStorage["active"] == 'undefined' || !getActive()));
+setEnabled(localStorage["enabled"] == 'undefined' || getEnabled());
+setActive(false);
 
 // Turn normalizer on or off
 function setEnabled(b) {
@@ -8,6 +8,15 @@ function setEnabled(b) {
 	chrome.browserAction.setBadgeText({text: localStorage["enabled"]});
 	if (!b) setActive(false);
 	console.log("Enabled: "+localStorage["enabled"]);
+	// Send message to all tabs to stop looping main function
+	chrome.tabs.query({}, function(tabs) {
+		var message = {
+			method: (b) ? "startLoop" : "clearLoop"
+		};
+		for (var i=0; i<tabs.length; ++i) {
+			chrome.tabs.sendMessage(tabs[i].id, message);
+		}
+	});
 }
 
 // Get normalizer enabled state
@@ -33,4 +42,14 @@ function popupOpen() {
 	setEnabled(!getEnabled());
 }
 
+// Enable/disable exstension on icon click
 chrome.browserAction.onClicked.addListener(popupOpen);
+
+// Get messages from content script
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+	if (request.method == "getEnabled") {
+		sendResponse({
+			enabled: localStorage["enabled"]
+		});
+	}
+});
