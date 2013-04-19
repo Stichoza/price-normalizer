@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+	<style>
+	.hidden {
+		display: none;
+	}
+	body {
+		margin: 20px;
+		padding: 0px;
+		width: 295px;
+		min-height: 400px;
+	}
+	.bottom-bar {
+		text-align: center;
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		text-align: right;
+	}
+	</style>
+	<script src="../libs/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../libs/jquery/jquery-latest.min.js"></script>
+	<script src="options.js"></script>
+</head>
+<body>
+	<div>
+		<fieldset>
+			<legend>iPad Game <small><span id="status-text" class="pull-right"></span></small></legend>
+			
+
+			<label class="checkbox" title="asdasd"><input id="global" type="checkbox"> Enable everywhere <small><span class="text-error" title="Warning: enable only on your own risk!">(!)</span></small></label>
+
+			<label>Action interval (milliseconds)
+				<input id="interval" type="text" placeholder="">
+			</label>
+		</fieldset>
+	</div>
+
+	<!-- Bottom buttons -->
+	<div class="bottom-bar">
+		<div id="enable" class="btn-group">
+			<button id="on" class="btn">On</button>
+			<button id="off" class="btn">Off</button>
+		</div>
+		&nbsp;
+		<button id="cancel" class="btn">Cancel</button>
+		<button id="save" class="btn btn-primary">Save Changes</button>
+	</div>
+</body>
+</html>

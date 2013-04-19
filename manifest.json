@@ -13,20 +13,20 @@
 			"19": "assets/icons/icon-19.png",
 			"38": "assets/icons/icon-38.png"
     	},
-		//"default_popup": "popup.html",
+		"default_popup": "src/options.html",
 		"default_name": "Price Normalizer"
 	},
 	"background": {
-		"scripts": ["background.js"]
+		"scripts": ["src/background.js"]
 	},
-	"options_page": "options.html",
+	"options_page": "src/options.html",
 	"permissions": [
 		"tabs",
 		"*://*/*"
 	],
 	"content_scripts": [{
 		"matches": ["*://*/*"],
-		"js": ["price-normalizer.js"],
+		"js": ["src/price-normalizer.js"],
 		"run_at": "document_end"
 	}]
 
