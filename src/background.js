@@ -1,13 +1,15 @@
 // Initialize localStorage
-setEnabled(localStorage["enabled"] == 'undefined' || getEnabled());
-setActive(false);
-initLocalStorage("restonly", "no");
+initLocalStorage("enabled", "on");
+initLocalStorage("global", "no");
+initLocalStorage("restonly", "ok");
 initLocalStorage("rest_min", "75");
 
+setActive(false);
+setEnabled(getEnabled()); // We need it to changes badge text
 
 // Initialize vars
 function initLocalStorage(n, v) {
-	if (localStorage[n] == 'undefined') localStorage[n] = v;
+	if (localStorage[n] === undefined || localStorage[n] === null) localStorage[n] = v;
 }
 
 // Turn normalizer on or off
