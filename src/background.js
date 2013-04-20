@@ -1,6 +1,14 @@
 // Initialize localStorage
 setEnabled(localStorage["enabled"] == 'undefined' || getEnabled());
 setActive(false);
+initLocalStorage("restonly", "no");
+initLocalStorage("rest_min", "75");
+
+
+// Initialize vars
+function initLocalStorage(n, v) {
+	if (localStorage[n] == 'undefined') localStorage[n] = v;
+}
 
 // Turn normalizer on or off
 function setEnabled(b) {
@@ -48,6 +56,11 @@ chrome.browserAction.onClicked.addListener(popupOpen);
 // Get messages from content script
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	if (request.method == "getEnabled") {
+		sendResponse({
+			enabled: localStorage["enabled"]
+		});
+	} else if (request.method == "setEnabled") {
+		setEnabled(request.value);
 		sendResponse({
 			enabled: localStorage["enabled"]
 		});

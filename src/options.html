@@ -8,6 +8,7 @@
 	}
 	body {
 		margin: 20px;
+		margin-top: 5px;
 		padding: 0px;
 		width: 295px;
 		min-height: 400px;
@@ -20,20 +21,22 @@
 		text-align: right;
 	}
 	</style>
+	<script src="../libs/jquery/jquery-2.0.0.min.js"></script>
 	<script src="../libs/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../libs/jquery/jquery-latest.min.js"></script>
 	<script src="options.js"></script>
 </head>
 <body>
 	<div>
 		<fieldset>
-			<legend>iPad Game <small><span id="status-text" class="pull-right"></span></small></legend>
-			
+			<legend><img src="../assets/icons/icon-24.png" alt=""/> Price Normalizer <small><span id="status-text" class="pull-right"></span></small></legend>
 
-			<label class="checkbox" title="asdasd"><input id="global" type="checkbox"> Enable everywhere <small><span class="text-error" title="Warning: enable only on your own risk!">(!)</span></small></label>
+			<label class="checkbox" rel="tooltip" title="Not recommended. Use at your own risk!"><input id="global" type="checkbox"> Normalize prices everywhere</label>
 
-			<label>Action interval (milliseconds)
-				<input id="interval" type="text" placeholder="">
+			<label class="checkbox" rel="tooltip" title="Ex.: $99 won't be changed if checked"><input id="restonly" type="checkbox"> Normalize only rest</label>
+
+			<label>
+				<input id="rest_min" type="number" placeholder="" style="width:48px">
+				&nbsp;Minimum rest to normalize
 			</label>
 		</fieldset>
 	</div>
