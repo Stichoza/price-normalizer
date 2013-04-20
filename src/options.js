@@ -36,15 +36,15 @@ function setStatusTest(t, c) {
 
 // Prepare options page
 function preparePage() {
-	setOnOffState(getOpt("isEnabled")); // Initial on/off state
-	$("#global").attr("checked", getOpt("isGlobal"));
-	$("#restonly").attr("checked", getOpt("isRestOnly"));
-	$("#rest_min").val(getOpt("rest_min"));
+	setOnOffState(getOption("isEnabled")); // Initial on/off state
+	$("#global").attr("checked", getOption("isGlobal"));
+	$("#restonly").attr("checked", getOption("isRestOnly"));
+	$("#rest_min").val(getOption("rest_min"));
 }
 
 // Get options
-function getOpt(opt) {
-	switch (opt) {
+function getOption(o) {
+	switch (o) {
 		case "isEnabled":
 			return (localStorage["enabled"] == "on");
 		case "isGlobal":
@@ -52,12 +52,12 @@ function getOpt(opt) {
 		case "isRestOnly":
 			return (localStorage["restonly"] == "ok");
 		default:
-			return localStorage[opt];
+			return localStorage[o];
 	}
 }
 
 // Set options
-function setOpt(opt, val) {
+function setOption(opt, val) {
 	localStorage[opt] = val;
 }
 
@@ -94,9 +94,9 @@ $(document).ready(function() {
 	});
 
 	$("#save").click(function() {
-		setOpt("global", $("#global").is(':checked') ? "ok" : "no");
-		setOpt("restonly", $("#restonly").is(':checked') ? "ok" : "no");
-		setOpt("rest_min", $("#rest_min").val());
+		setOption("global", $("#global").is(':checked') ? "ok" : "no");
+		setOption("restonly", $("#restonly").is(':checked') ? "ok" : "no");
+		setOption("rest_min", $("#rest_min").val());
 		setStatusTest("Changes saved.", "success");
 	});
 

@@ -4,7 +4,7 @@ initLocalStorage("global", "no");
 initLocalStorage("restonly", "ok");
 initLocalStorage("rest_min", "75");
 
-setActive(false);
+setActive(false); // Before setting enable state
 setEnabled(getEnabled()); // We need it to changes badge text
 
 // Initialize vars
@@ -47,14 +47,6 @@ function getActive() {
 	return (localStorage["active"] == "ok");
 }
 
-// Actions fired on popup click
-function popupOpen() {
-	setEnabled(!getEnabled());
-}
-
-// Enable/disable exstension on icon click
-chrome.browserAction.onClicked.addListener(popupOpen);
-
 // Get messages from content script
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	if (request.method == "getEnabled") {
@@ -65,6 +57,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 		setEnabled(request.value);
 		sendResponse({
 			enabled: localStorage["enabled"]
+		});
+	} else if (request.method == "getOption") {
+		sendResponse({
+			value: localStorage[request.option]
 		});
 	}
 });
