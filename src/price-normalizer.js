@@ -1,5 +1,5 @@
 // Main Regex
-var __prcm_rex__ = new RegExp("([$£€₠₡₢₣₤₥₦₧₨₩₪₫₭₮₯₰₱₲₳₴₵₶₷₸₹₺])+"+
+var __prcm_rex__ = new RegExp("([$£€￥₠₡₢₣₤₥₦₧₨₩₪₫₭₮₯₰₱₲₳₴₵₶₷₸₹₺])+"+
 	"([0-9, ]{1,10})+([.]{0,1})+([0-9]{1,5})", "igm");
 
 // Find what to replace
@@ -13,7 +13,9 @@ var __prcm_ceil__ = function (s) {
 	var r = Math.round(s);
 	var rem = s*100%100;
 	// console.log(s+" -> "+r+" -> "+rem+" :: "+__prcm_option__("rest_min"));
-	return (r>s && rem >= __prcm_option__("rest_min")) ? r.toFixed(2) : s.toFixed(2);
+	window.__prcm_original_last__ = s; // Set this as title on node element
+	window.__prcm_is_modified__ = (r>s && rem >= __prcm_option__("rest_min"));
+	return (window.__prcm_is_modified__) ? r.toFixed(2) : s.toFixed(2);
 }
 
 // Main loop function
@@ -22,12 +24,14 @@ function __prcm_main__(node) {
 	var __prcm_match__ = __prcm_val__.match(__prcm_rex__);
 	var __prcm_count__ = (__prcm_match__ == null) ? 0 : __prcm_val__.match(__prcm_rex__).length;
 	if (__prcm_count__) {
+		var __prcm_newsrc__ = __prcm_val__.replace(__prcm_rex__, __prcm_rpl__);
+		if (!window.__prcm_is_modified__) return false; // Avoid changing nodeValue
+		node.nodeValue = __prcm_newsrc__;
+		console.log("price-normalizer: changed "+window.__prcm_original_last__);
 		// Set title with original price on node
 		if (__prcm_val__.length < 10) {
-			node.addAtribute
+			node.parentElement.setAttribute("title", "Original price was "+window.__prcm_original_last__);
 		}
-		var __prcm_newsrc__ = __prcm_val__.replace(__prcm_rex__, __prcm_rpl__);
-		node.nodeValue = __prcm_newsrc__;
 	}
 }
 
