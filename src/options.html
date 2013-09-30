@@ -11,7 +11,7 @@
 		margin-top: 5px;
 		padding: 0px;
 		width: 295px;
-		min-height: 400px;
+		min-height: 200px;
 	}
 	.bottom-bar {
 		text-align: center;
@@ -19,6 +19,16 @@
 		bottom: 20px;
 		right: 20px;
 		text-align: right;
+	}
+	.spacer {
+		height: 32px;
+	}
+	.soon::after {
+		content: " (soon)";
+		display: inline;
+		color: red;
+		font-size: 9px;
+		vertical-align: super;
 	}
 	</style>
 	<script src="../libs/jquery/jquery-2.0.0.min.js"></script>
@@ -30,9 +40,11 @@
 		<fieldset>
 			<legend><img src="../assets/icons/icon-24.png" alt=""/> Price Normalizer <small><span id="status-text" class="pull-right"></span></small></legend>
 
-			<label class="checkbox" rel="tooltip" title="Not recommended. Use at your own risk!"><input id="global" type="checkbox"> Normalize prices everywhere</label>
+			<label class="checkbox" rel="tooltip" title="Display original price on hover if possible"><input id="add_titles" type="checkbox"> Show original price on hover</label>
 
-			<label class="checkbox" rel="tooltip" title="Ex.: $99 won't be changed if checked"><input id="restonly" type="checkbox"> Normalize only rest</label>
+			<label class="checkbox soon" rel="tooltip" title="Not recommended. Use at your own risk!"><input disabled="disabled" id="global" type="checkbox"> Normalize prices everywhere</label>
+
+			<label class="checkbox soon" rel="tooltip" title="Ex.: $99 won't be changed if checked"><input disabled="disabled" id="restonly" type="checkbox"> Normalize only rest</label>
 
 			<label>
 				<input id="rest_min" type="number" pattern="[0-9]{1,2}" placeholder="" style="width:48px">
@@ -40,6 +52,7 @@
 			</label>
 		</fieldset>
 	</div>
+	<div class="spacer"></div>
 
 	<!-- Bottom buttons -->
 	<div class="bottom-bar">

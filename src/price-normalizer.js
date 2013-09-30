@@ -10,11 +10,11 @@ var __prcm_rpl__ = function (s) {
 // How to replace
 var __prcm_ceil__ = function (s) {
 	s = parseFloat(s.replace(/([, ])/gi, ""), 10);
-	var r = Math.round(s);
+	var r = Math.ceil(s);
 	var rem = s*100%100;
 	// console.log(s+" -> "+r+" -> "+rem+" :: "+__prcm_option__("rest_min"));
 	window.__prcm_original_last__ = s; // Set this as title on node element
-	window.__prcm_is_modified__ = (r>s && rem >= __prcm_option__("rest_min"));
+	window.__prcm_is_modified__ = (rem >= __prcm_option__("rest_min"));
 	return (window.__prcm_is_modified__) ? r.toFixed(2) : s.toFixed(2);
 }
 

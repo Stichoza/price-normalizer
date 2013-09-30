@@ -39,6 +39,7 @@ function preparePage() {
 	setOnOffState(getOption("isEnabled")); // Initial on/off state
 	$("#global").attr("checked", getOption("isGlobal"));
 	$("#restonly").attr("checked", getOption("isRestOnly"));
+	$("#add_titles").attr("checked", getOption("isTitled"));
 	$("#rest_min").val(getOption("rest_min"));
 }
 
@@ -49,6 +50,8 @@ function getOption(o) {
 			return (localStorage["enabled"] == "on");
 		case "isGlobal":
 			return (localStorage["global"] == "ok");
+		case "isTitled":
+			return (localStorage["add_titles"] == "ok");
 		case "isRestOnly":
 			return (localStorage["restonly"] == "ok");
 		default:
@@ -96,6 +99,7 @@ $(document).ready(function() {
 	$("#save").click(function() {
 		setOption("global", $("#global").is(':checked') ? "ok" : "no");
 		setOption("restonly", $("#restonly").is(':checked') ? "ok" : "no");
+		setOption("add_titles", $("#add_titles").is(':checked') ? "ok" : "no");
 		setOption("rest_min", $("#rest_min").val());
 		setStatusTest("Changes saved.", "success");
 	});

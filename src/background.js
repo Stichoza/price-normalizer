@@ -1,8 +1,9 @@
 // Initialize localStorage
 initLocalStorage("enabled", "on");
-initLocalStorage("global", "no");
+initLocalStorage("global", "ok");
 initLocalStorage("restonly", "ok");
-initLocalStorage("rest_min", "75");
+initLocalStorage("add_titles", "ok");
+initLocalStorage("rest_min", "70");
 
 setActive(false); // Before setting enable state
 setEnabled(getEnabled()); // We need it to changes badge text
