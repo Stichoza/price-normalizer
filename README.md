@@ -9,4 +9,4 @@ Psychological pricing or price ending or charm pricing is a marketing practice b
 
 ## Chrome Webstore
 
-[not yet published to Chrome Web Store]
+https://chrome.google.com/webstore/detail/price-normalizer/cjcabdepkpninjnoblpifandgpbegkkm
